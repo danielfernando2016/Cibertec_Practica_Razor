@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WebDeveloper.Model.ContactType>
+
+@using WebDeveloper.Helpers
+@{
+    ViewBag.Title = "ContactTypeDetails";
+}
+
+<h2>ContactTypeDetails</h2>
+
+@{        
+        @Html.PageLink(Model, x => Url.Action("Edit", "RazorHelper", new { id = x }, null))        
+}

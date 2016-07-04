@@ -1,16 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Text;
-using System.Threading.Tasks;
+
 using System.Web;
 using System.Web.Mvc;
+
+using WebDeveloper.Model;
 
 namespace WebDeveloper.Helpers
 {
     public static class CustomHelper
     {
-        public static IHtmlString DisplayPriceStatic(double price)
+        private const string Nbsp = "No esta Ingresado algun Valor";
+
+        public static IHtmlString MessageIfEmpty(this HtmlHelper helper, string value)
+        {
+            return new HtmlString(string.IsNullOrEmpty(value) ? Nbsp : value);
+        }
+
+
+
+        public static IHtmlString PageLink(this HtmlHelper html, IEnumerable<ContactType> col, Func<int, string> GetURL)
+        {
+            StringBuilder result = new StringBuilder();
+            TagBuilder tag = new TagBuilder("a");
+            
+            result.Append("<ul>");
+
+            foreach (var contactTypeObj in col)
+            {                
+                tag = new TagBuilder("a");
+                tag.MergeAttribute("href", GetURL(contactTypeObj.ContactTypeID));
+                tag.InnerHtml = contactTypeObj.Name;                
+                result.Append("<li>");
+                
+                result.Append(tag.ToString());
+                result.Append("</li>");
+            }
+
+            result.Append("</ul>");
+            
+            return new HtmlString(result.ToString());
+            
+        }
+
+       
+
+
+
+
+    public static IHtmlString DisplayPriceStatic(double price)
         {
             return new HtmlString(GetHtmlForPrice(price));
         }
@@ -33,5 +73,10 @@ namespace WebDeveloper.Helpers
         {            
             return date.HasValue ? $"<span>{date.Value.ToString("dd-mm-yyyy")}</span>" : "None";
         }
+
+        
+
+        
+
     }
 }

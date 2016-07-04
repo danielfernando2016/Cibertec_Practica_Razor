@@ -11,10 +11,10 @@ namespace WebDeveloper.Model
     public partial class AddressType
     {
         
-        public AddressType()
-        {
-            BusinessEntityAddress = new HashSet<BusinessEntityAddress>();
-        }
+        //public AddressType()
+        //{
+        //    BusinessEntityAddress = new HashSet<BusinessEntityAddress>();
+        //}
 
         public int AddressTypeID { get; set; }
 
@@ -27,6 +27,6 @@ namespace WebDeveloper.Model
         public DateTime ModifiedDate { get; set; }
 
         
-        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddress { get; set; }
+        //public virtual ICollection<BusinessEntityAddress> BusinessEntityAddress { get; set; }
     }
 }

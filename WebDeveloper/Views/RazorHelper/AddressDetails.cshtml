@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WebDeveloper.Model.Address>
+@using WebDeveloper.Helpers
+@{
+    ViewBag.Title = "AddressDetails";
+}
+
+<h2>Cities From Address</h2>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            
+            <span>@Html.MessageIfEmpty(item.City)</span>
+            
+
+        </li>
+
+
+    }
+</ul>

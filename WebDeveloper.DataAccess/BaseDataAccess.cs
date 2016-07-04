@@ -1,27 +1,53 @@
 ﻿using System.Collections.Generic;
-
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
 namespace WebDeveloper.DataAccess
 {
     public class BaseDataAccess<T> : IDataAccess<T> where T: class
     {
         public int Add(T entity)
         {
-            return 0;
+            using (var dbContext = new AdventureDbContext())
+            {
+                //dbContext.Entry(entity).State = System.Data.Entity.EntityState.Added;
+                dbContext.Entry(entity).State = EntityState.Added;
+                return dbContext.SaveChanges();
+
+            }
+
         }
 
         public int Delete(T entity)
         {
-            return 0;
+            using (var dbContext = new AdventureDbContext())
+            {
+                //dbContext.Entry(entity).State = System.Data.Entity.EntityState.Added;
+                dbContext.Entry(entity).State = EntityState.Deleted;
+                return dbContext.SaveChanges();
+
+            }
         }
 
         public List<T> GetList()
         {
-            return new List<T>();
+            using (var dbContext = new AdventureDbContext())
+            {
+                
+                return dbContext.Set<T>().ToList();
+            }
         }
 
         public int Update(T entity)
         {
-            return 0;
+            using (var dbContext = new AdventureDbContext())
+            {
+                //dbContext.Entry(entity).State = System.Data.Entity.EntityState.Added;
+                dbContext.Entry(entity).State = EntityState.Modified;
+                return dbContext.SaveChanges();
+
+            }
         }
+        
     }
 }

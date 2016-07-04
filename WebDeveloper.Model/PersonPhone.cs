@@ -24,10 +24,13 @@ namespace WebDeveloper.Model
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int PhoneNumberTypeID { get; set; }
 
+        [DataType(DataType.Date)]
+        [Display(Name = "Modified Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ModifiedDate { get; set; }
 
-        public virtual Person Person { get; set; }
+        //public virtual Person Person { get; set; }
 
-        public virtual PhoneNumberType PhoneNumberType { get; set; }
+        //public virtual PhoneNumberType PhoneNumberType { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebDeveloper.Model.Person>
+@using WebDeveloper.Helpers
+@{
+    ViewBag.Title = "Person";
+    
+
+<h2>Person</h2>
+
+<ol>
+    @foreach (var item in Model)
+    {
+        <li>
+            
+            <span>@Html.MessageIfEmpty(item.Title)</span>
+            <span>@Html.MessageIfEmpty(item.MiddleName)</span>
+            <span>@Html.MessageIfEmpty(item.LastName)</span>
+            <span>@Html.DisplayDateOrNullExtension(item.ModifiedDate)</span>
+            
+        </li>
+
+
+    }
+</ol>

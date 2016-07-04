@@ -8,20 +8,24 @@ namespace WebDeveloper.Model
     [Table("Person.PhoneNumberType")]
     public partial class PhoneNumberType
     {
-        public PhoneNumberType()
-        {
-            PersonPhone = new HashSet<PersonPhone>();
-        }
+        //public PhoneNumberType()
+        //{
+        //    PersonPhone = new HashSet<PersonPhone>();
+        //}
 
         public int PhoneNumberTypeID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter your name")]
         [StringLength(50)]
         public string Name { get; set; }
 
-        public DateTime ModifiedDate { get; set; }
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Modified Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? ModifiedDate { get; set; }
 
         
-        public virtual ICollection<PersonPhone> PersonPhone { get; set; }
+        //public virtual ICollection<PersonPhone> PersonPhone { get; set; }
     }
 }
